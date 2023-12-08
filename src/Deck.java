@@ -33,7 +33,9 @@ public class Deck {
     }
 
     public Card deal() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
         return cards.get(--cardsLeft);
     }
 }
