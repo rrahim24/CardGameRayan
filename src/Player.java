@@ -10,6 +10,9 @@ public class Player {
         this.points = 0;
     }
 
+    public List<Card> getHand() {
+        return hand;
+    }
     public void addCard(Card card) {
         hand.add(card);
         points += card.getValue();

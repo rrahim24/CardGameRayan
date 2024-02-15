@@ -3,11 +3,13 @@ public class Deck {
     private List<Card> cards;
     private int cardsLeft;
 
+
     public Deck(String[] ranks, String[] suits, int[] values) {
         cards = new ArrayList<>();
+        int cardNumber = 1;
         for (int i = 0; i < ranks.length; i++) {
             for (String suit : suits) {
-                cards.add(new Card(ranks[i], suit, values[i]));
+                cards.add(new Card(ranks[i], suit, values[i], cardNumber++));
             }
         }
         cardsLeft = cards.size();
