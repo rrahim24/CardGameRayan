@@ -56,12 +56,10 @@ public class Game {
     public String getStatus() {
         boolean isGameOver = dealer.getHand().size() > 0 && (player.getPoints() > 21 || dealer.getPoints() >= 17);
 
-        // Game continues until conditions are met
         if (!isGameOver) {
             return "";
         }
-        // Implement logic to return the current game status as a String
-        // This could be a simple message or a more complex status based on the current game state
+
         boolean playerBlackjack = player.getPoints() == 21 && player.getHand().size() == 2;
         boolean dealerBlackjack = dealer.getPoints() == 21 && dealer.getHand().size() == 2;
 
@@ -120,25 +118,30 @@ public class Game {
 
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            Game game = new Game();
-            BlackjackViewer viewer = new BlackjackViewer(game);
-            game.setViewer(viewer);
-            game.playGame();
-            viewer.updateGameView();
+        Scanner scanner = new Scanner(System.in); // Create a scanner for input
+
+        while (true) { // Start an infinite loop to allow multiple games
+            Game game = new Game(); // Create a new game instance
+            BlackjackViewer viewer = new BlackjackViewer(game); // Create the game viewer
+            game.setViewer(viewer); // Set the viewer in the game
+            game.playGame(); // Start playing the game
+            viewer.updateGameView(); // Update the game view
+
             String playAgain;
+            // Loop until valid input (yes/no/y/n) is received
             do {
                 System.out.println("Do you want to play again? (yes/no): ");
-                 playAgain = scanner.nextLine();
-            } while(!playAgain.equals("yes") && !playAgain.equals("no")  && !playAgain.equals("y")  && !playAgain.equals("n"));
+                playAgain = scanner.nextLine();
+            } while(!playAgain.equals("yes") && !playAgain.equals("no") && !playAgain.equals("y") && !playAgain.equals("n"));
 
+            // Check if the user doesn't want to play again
             if (!playAgain.equals("yes") && !playAgain.equals("y")) {
-                System.out.println("Thanks for playing!");
-                break;
+                System.out.println("Thanks for playing!"); // Thank the user
+                break; // Exit the loop to end the game
             }
-            viewer.setView(false);
+            viewer.setView(false); // Hide the viewer for the next game
         }
-        System. exit(0);
+        System.exit(0); // Exit the program
     }
+
 }
